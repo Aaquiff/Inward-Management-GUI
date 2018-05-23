@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import Ward from './Ward.jsx'
 import AddWards from './AddWard.jsx';
@@ -12,19 +13,30 @@ export default class Wards extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            wards: [
-                {id: 'W-001', name: 'Ward 1'},
-                {id: 'W-002', name: 'Ward 2'}
-            ]
-        }
+            wards: []
+        };
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:3000/wards`)
+            .then(res => {
+                const wards = res.data;
+                console.log(wards)
+                this.setState({ wards });
+            })
     }
 
     addWard(ward) {
-        this.setState({
-            wards: this.state.wards.concat({
-                id: Date.now(),     name: ward.name
-            })
-        })
+        // this.setState({
+        //     wards: this.state.wards.concat({
+        //         id: Date.now(),     name: ward.name
+        //     })
+        // })
+
+        ward.id = Date.now();
+        console.log(ward);
+
+        axios.post(`http://localhost:3000/wards`,ward);
     }
 
     render() {

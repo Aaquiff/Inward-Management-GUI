@@ -26,7 +26,10 @@ module.exports = {
     },
     devServer: {
         contentBase: path.join(__dirname, "/"),
-        compress: true
+        compress: true,
+        headers: {
+            "Access-Control-Allow-Origin": "*"
+        }
     },
     devtool: "source-map"
 };

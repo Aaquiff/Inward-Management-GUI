@@ -48,3 +48,5 @@ Temporary Items
 
 # npm files
 node_modules
+.idea
+*.log
