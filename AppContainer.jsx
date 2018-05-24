@@ -13,8 +13,7 @@ export default class AppContainer extends Component {
     }    
 
     render() {
-        return (
-        <Router>
+        return ( <Router>
             <div>
                 <h2>React Router</h2>
                 <ul>

@@ -12,20 +12,23 @@ export default class AddWard extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            name : ""
+        }
     }
 
     onNameChange(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.name = event.target.value;
+        this.state.name = event.target.value;
     }
 
     onSubmit(event) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.name) {
-            this.props.addWard({name: this.name});
-            this.name = '';
+        if (this.state.name) {
+            this.props.addWard({name: this.state.name});
+            this.state.name = '';
         }
     }
 

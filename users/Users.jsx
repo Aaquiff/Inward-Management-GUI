@@ -21,6 +21,7 @@ export default class Users extends Component {
         return <div class='container'>
                 <h3>Users</h3>
                 <ListUsers users= {this.state.users}/>
+                
             </div>;
     }
 }
