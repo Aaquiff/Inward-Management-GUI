@@ -5,6 +5,7 @@ import {HashRouter as Router, Switch, Route, Link, NavLink} from 'react-router-d
 
 import Users from './users/Users.jsx';
 import Wards from './wards/Wards.jsx';
+import Beds from './beds/Beds.jsx';
 
 export default class AppContainer extends Component {
     constructor(props) {
@@ -29,8 +30,8 @@ export default class AppContainer extends Component {
                                     </NavLink>
                                 </li>
                                 <li className="nav-item" >
-                                    <NavLink className="nav-link" to={'/users'}>
-                                        Users
+                                    <NavLink className="nav-link" to={'/beds'}>
+                                        Beds
                                     </NavLink>
                                 </li>
                             </ul>
@@ -40,7 +41,7 @@ export default class AppContainer extends Component {
                     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         <Switch>
                             <Route path='/wards' component={Wards}/>
-                            <Route path='/users' component={Users}/>
+                            <Route path='/beds' component={Beds}/>
                         </Switch>
                         </div>
                     </main>
