@@ -26,19 +26,8 @@ export default class Ward extends Component {
         return <tr>
                 <td>{ward.id}</td>
                 <td>{ward.name}</td>
-                <td><button onClick= {event => this.onClick(event, ward)} >Delete</button></td>
+                <td><button className="btn btn-danger" onClick= {event => this.onClick(event, ward)} >Delete</button></td>
             </tr>
     }
 
 }
-
-// const Ward = props => {
-//     const {ward} = props;
-//     return <tr>
-//             <td>{ward.id}</td>
-//             <td>{ward.name}</td>
-//             <button>Delete</button>
-//         </tr>
-// };
-
-// export default Ward;

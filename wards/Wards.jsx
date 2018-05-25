@@ -28,23 +28,20 @@ export default class Wards extends Component {
     addWard(ward) {
         axios.post(`http://localhost:3000/wards`, ward
         ).then((data)=>{
-            this.setState({
-                        wards: this.state.wards.concat({
-                            id: ward.id,     name: ward.name
-                        })
-                    });
+            axios.get(`http://localhost:3000/wards`)
+            .then(res => {
+                const wards = res.data;
+                this.setState({ wards });
+            })
         })
     }
 
     deleteWard(ward) {
         axios.delete('http://localhost:3000/wards/'+ward.id).then((data)=>{
-            var temp = this.state.wards;
-            var index = temp.indexOf(ward);
-            if(index > -1) {
-                temp = temp.slice(index, 1);
-            }
-            this.setState({
-                wards: temp
+            axios.get(`http://localhost:3000/wards`)
+            .then(res => {
+                const wards = res.data;
+                this.setState({ wards });
             })
         })
     }
@@ -52,7 +49,7 @@ export default class Wards extends Component {
     render() {
         const {wards} = this.state.wards;
 
-        return <div>
+        return <div className="container">
                 <h2>Wards</h2>
                 <AddWards addWard = { ward=> this.addWard(ward) } />
                 <ListWards deleteWard = {ward=> this.deleteWard(ward)} wards = {this.state.wards} />

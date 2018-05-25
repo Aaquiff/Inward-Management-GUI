@@ -19,12 +19,13 @@ export default class ListWards extends Component {
 
     render() {
         const {wards} = this.props;
-        return <div>
-                <table>
+        return <div className="container">
+                <table className="table table-bordered">
                 <thead>
                 <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th></th>
                 </tr>
                 </thead>
                 <tbody>

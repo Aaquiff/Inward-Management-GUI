@@ -13,8 +13,11 @@ export default class AddWard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: "",
             name : ""
-        }
+        };
+        this.onIdChange = this.onIdChange.bind(this);
+        this.onNameChange = this.onNameChange.bind(this);
     }
 
     onIdChange(event) {
@@ -40,16 +43,20 @@ export default class AddWard extends Component {
     }
 
     render() {
-        return <div>
-            <form onSubmit= {event => this.onSubmit(event)}>
+        return <div className="container">
+            <form className="form" onSubmit= {event => this.onSubmit(event)}>
                 <h3>Add Ward</h3>
+                <div className="form-group">
                     <label>Id:</label>
-                    <input type="text" onChange= {event => this.onIdChange(event)}/>
-
+                    <input className="form-control" type="text" onChange= {event => this.onIdChange(event)}/>
+                </div>
+                <div className="form-group">
                     <label>Name:</label>
-                    <input type="text" onChange= {event => this.onNameChange(event)}/>
-
-                <button type="submit">Add</button>
+                    <input className="form-control" type="text" onChange= {event => this.onNameChange(event)}/>
+                </div>
+                <div className="form-group">
+                    <button className="btn btn-primary" type="submit">Add</button>
+                </div>
             </form>
         </div>
     }
