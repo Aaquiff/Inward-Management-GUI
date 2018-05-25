@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import Ward from './Ward.jsx'
 import AddWards from './AddWard.jsx';
 import ListWards from './ListWards.jsx';
 

@@ -3,8 +3,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import Bed from './Bed.jsx';
-
 export default class ListBeds extends Component {
 
     static get propTypes() {
@@ -15,6 +13,12 @@ export default class ListBeds extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    onClick(event, bed) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.props.deleteBed(bed);
     }
 
     render() {
@@ -34,7 +38,14 @@ export default class ListBeds extends Component {
                 <tbody>
                 {
                     beds.map(bed => {
-                        return <Bed key={bed.bedNo} bed={bed} deleteBed = {bed=> this.props.deleteBed(bed)}/>
+                        return <tr key={bed.bedNo}>
+                        <td>{bed.bedNo}</td>
+                        <td>{bed.bedType}</td>
+                        <td>{bed.bhtNo}</td>
+                        <td>{bed.patientId}</td>
+                        <td>{bed.availability}</td>
+                        <td><button className="btn btn-danger" onClick= {event => this.onClick(event, bed)} >Delete</button></td>
+                    </tr>
                 })
                 }
                 </tbody>

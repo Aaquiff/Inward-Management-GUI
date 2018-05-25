@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import Bed from './Bed.jsx'
 import AddBed from './AddBed.jsx';
 import ListBeds from './ListBeds.jsx';
 

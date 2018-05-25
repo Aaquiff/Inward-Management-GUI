@@ -3,8 +3,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import Ward from './Ward.jsx';
-
 export default class ListWards extends Component {
 
     static get propTypes() {
@@ -15,6 +13,12 @@ export default class ListWards extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    onClick(event, ward) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.props.deleteWard(ward);
     }
 
     render() {
@@ -32,7 +36,12 @@ export default class ListWards extends Component {
                 <tbody>
                 {
                     wards.map(ward => {
-                        return <Ward key={ward.wardNo} ward={ward} deleteWard = {ward=> this.props.deleteWard(ward)}/>
+                        return <tr key={ward.wardNo}>
+                        <td>{ward.wardNo}</td>
+                        <td>{ward.wardCategory}</td>
+                        <td>{ward.wardType}</td>
+                        <td><button className="btn btn-danger" onClick= {event => this.onClick(event, ward)} >Delete</button></td>
+                    </tr>
                 })
                 }
                 </tbody>
