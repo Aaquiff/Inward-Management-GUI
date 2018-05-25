@@ -27,22 +27,43 @@ export default class Wards extends Component {
     }
 
     addWard(ward) {
-        // this.setState({
-        //     wards: this.state.wards.concat({
-        //         id: Date.now(),     name: ward.name
+
+        // fetch(`http://localhost:3000/wards`, {
+        //     method: 'POST',
+        //     headers: {'Content-Type': 'application/json'},
+        //     body: JSON.stringify(ward)
+        // }).then(function(response) {
+        //     if (response.status >= 400) {
+        //         throw new Error("Bad response from server");
+        //     }
+        //     return response.json();
+        // }).then(function(data) {
+        //     console.log(data)
+        //     if(data == "success"){
+        //         this.setState({msg: "Thanks for registering"});
+        //     }
+        //     this.setState({
+        //         wards: this.state.wards.concat({
+        //             id: ward.id,     name: ward.name
+        //         })
         //     })
-        // })
+        // }).catch(function(err) {
+        //     console.log(err)
+        // });
 
-        ward.id = Date.now();
-        console.log(ward);
-
-        axios.post(`http://localhost:3000/wards`,ward);
+        axios.post(`http://localhost:3000/wards`, ward).then((data)=>{
+            this.setState({
+                        wards: this.state.wards.concat({
+                            id: ward.id,     name: ward.name
+                        })
+                    })
+        })
     }
 
     render() {
         const {wards} = this.state.wards;
 
-        return <div class='container'>
+        return <div>
                 <h2>Wards</h2>
                 <AddWards addWard = { ward=> this.addWard(ward) } />
                 <ListWards wards = {this.state.wards} />

@@ -17,6 +17,12 @@ export default class AddWard extends Component {
         }
     }
 
+    onIdChange(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.state.id = event.target.value;
+    }
+
     onNameChange(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -26,22 +32,24 @@ export default class AddWard extends Component {
     onSubmit(event) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.state.name) {
-            this.props.addWard({name: this.state.name});
+        if (this.state.name && this.state.id) {
+            this.props.addWard({id: this.state.id, name: this.state.name});
             this.state.name = '';
+            this.state.id = '';
         }
     }
 
     render() {
-        return <div class='container'>
-            <form class='form' onSubmit= {event => this.onSubmit(event)}>
+        return <div>
+            <form onSubmit= {event => this.onSubmit(event)}>
                 <h3>Add Ward</h3>
-                <div class='form-group'>
+                    <label>Id:</label>
+                    <input type="text" onChange= {event => this.onIdChange(event)}/>
+
                     <label>Name:</label>
-                    <input class='form-control' type="text" onChange= {event => this.onNameChange(event)}/>
-                </div>
-                
-                <button class='btn btn-primary' type="submit">Add</button>
+                    <input type="text" onChange= {event => this.onNameChange(event)}/>
+
+                <button type="submit">Add</button>
             </form>
         </div>
     }

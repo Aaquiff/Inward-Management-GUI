@@ -17,8 +17,8 @@ export default class ListWards extends Component {
 
     render() {
         const {wards} = this.props;
-        return <div class='container'>
-                <table class='table table-bordered'>
+        return <div>
+                <table>
                 <thead>
                 <tr>
                 <th>ID</th>
