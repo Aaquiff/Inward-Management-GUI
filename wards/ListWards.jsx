@@ -7,8 +7,10 @@ import Ward from './Ward.jsx';
 
 export default class ListWards extends Component {
 
-    static get proptypes() {
-        return PropTypes.array;
+    static get propTypes() {
+        return {
+            deleteWard: PropTypes.func
+        }
     }
 
     constructor(props) {
@@ -28,7 +30,7 @@ export default class ListWards extends Component {
                 <tbody>
                 {
                     wards.map(ward => {
-                        return <Ward key={ward.id} ward={ward}/>
+                        return <Ward key={ward.id} ward={ward} deleteWard = {ward=> this.props.deleteWard(ward)}/>
                 })
                 }
                 </tbody>

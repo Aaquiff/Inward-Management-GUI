@@ -21,42 +21,31 @@ export default class Wards extends Component {
         axios.get(`http://localhost:3000/wards`)
             .then(res => {
                 const wards = res.data;
-                console.log(wards)
                 this.setState({ wards });
             })
     }
 
     addWard(ward) {
-
-        // fetch(`http://localhost:3000/wards`, {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(ward)
-        // }).then(function(response) {
-        //     if (response.status >= 400) {
-        //         throw new Error("Bad response from server");
-        //     }
-        //     return response.json();
-        // }).then(function(data) {
-        //     console.log(data)
-        //     if(data == "success"){
-        //         this.setState({msg: "Thanks for registering"});
-        //     }
-        //     this.setState({
-        //         wards: this.state.wards.concat({
-        //             id: ward.id,     name: ward.name
-        //         })
-        //     })
-        // }).catch(function(err) {
-        //     console.log(err)
-        // });
-
-        axios.post(`http://localhost:3000/wards`, ward).then((data)=>{
+        axios.post(`http://localhost:3000/wards`, ward
+        ).then((data)=>{
             this.setState({
                         wards: this.state.wards.concat({
                             id: ward.id,     name: ward.name
                         })
-                    })
+                    });
+        })
+    }
+
+    deleteWard(ward) {
+        axios.delete('http://localhost:3000/wards/'+ward.id).then((data)=>{
+            var temp = this.state.wards;
+            var index = temp.indexOf(ward);
+            if(index > -1) {
+                temp = temp.slice(index, 1);
+            }
+            this.setState({
+                wards: temp
+            })
         })
     }
 
@@ -66,7 +55,7 @@ export default class Wards extends Component {
         return <div>
                 <h2>Wards</h2>
                 <AddWards addWard = { ward=> this.addWard(ward) } />
-                <ListWards wards = {this.state.wards} />
+                <ListWards deleteWard = {ward=> this.deleteWard(ward)} wards = {this.state.wards} />
                 </div>
     }
 }
