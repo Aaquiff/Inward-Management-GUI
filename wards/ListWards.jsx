@@ -19,19 +19,20 @@ export default class ListWards extends Component {
 
     render() {
         const {wards} = this.props;
-        return <div className="container">
+        return <div>
                 <table className="table table-bordered">
                 <thead>
                 <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>Ward No</th>
+                <th>Category</th>
+                <th>Type</th>
                 <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 {
                     wards.map(ward => {
-                        return <Ward key={ward.id} ward={ward} deleteWard = {ward=> this.props.deleteWard(ward)}/>
+                        return <Ward key={ward.wardNo} ward={ward} deleteWard = {ward=> this.props.deleteWard(ward)}/>
                 })
                 }
                 </tbody>

@@ -14,26 +14,41 @@ export default class AppContainer extends Component {
 
     render() {
         return ( <Router>
-            <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">HIS-Inward</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li><NavLink to={'/wards'}>Wards</NavLink></li>
-                        <li><NavLink to={'/users'}>Users</NavLink></li>
-                    </ul>
+         <div>
+            <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+                <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="">HIS-Inward</a>
+            </nav> 
+            <div className="container-fluid">
+                <div className="row">
+                    <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+                        <div className="sidebar-sticky">
+                            <ul className="nav flex-column">
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to={'/wards'}>
+                                        <span data-feather="home"></span>Wards
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item" >
+                                    <NavLink className="nav-link" to={'/users'}>
+                                        Users
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-4">
+                    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                        <Switch>
+                            <Route path='/wards' component={Wards}/>
+                            <Route path='/users' component={Users}/>
+                        </Switch>
+                        </div>
+                    </main>
                 </div>
-                
-            </nav>
-            <Switch>
-                    <Route path='/wards' component={Wards}/>
-                    <Route path='/users' component={Users}/>
-                </Switch>
-             </div>   
+            </div>
+            
+            
+            </div>   
         </Router>
         )
     }

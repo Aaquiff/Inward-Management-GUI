@@ -13,50 +13,71 @@ export default class AddWard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: "",
-            name : ""
+            wardNo: "",
+            wardCategory: "",
+            wardType: ""
         };
-        this.onIdChange = this.onIdChange.bind(this);
-        this.onNameChange = this.onNameChange.bind(this);
+        this.onWardNoChange = this.onWardNoChange.bind(this);
+        this.onWardCategoryChange = this.onWardCategoryChange.bind(this);
+        this.onWardTypeChange = this.onWardTypeChange.bind(this);
     }
 
-    onIdChange(event) {
+    onWardNoChange(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.state.id = event.target.value;
+        this.state.wardNo = event.target.value;
     }
 
-    onNameChange(event) {
+    onWardCategoryChange(event) {
         event.preventDefault();
         event.stopPropagation();
-        this.state.name = event.target.value;
+        this.state.wardCategory = event.target.value;
+    }
+
+    onWardTypeChange(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.state.wardType = event.target.value;
     }
 
     onSubmit(event) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.state.name && this.state.id) {
-            this.props.addWard({id: this.state.id, name: this.state.name});
-            this.state.name = '';
-            this.state.id = '';
+        if (this.state.wardNo && this.state.wardCategory && this.state.wardType) {
+            this.props.addWard({wardNo: this.state.wardNo, wardCategory: this.state.wardCategory, wardType: this.state.wardType});
+            this.state.wardNo = '';
+            this.state.wardCategory = '';
+            this.state.wardType = '';
         }
     }
 
     render() {
         return <div className="container">
-            <form className="form" onSubmit= {event => this.onSubmit(event)}>
-                <h3>Add Ward</h3>
-                <div className="form-group">
-                    <label>Id:</label>
-                    <input className="form-control" type="text" onChange= {event => this.onIdChange(event)}/>
-                </div>
-                <div className="form-group">
-                    <label>Name:</label>
-                    <input className="form-control" type="text" onChange= {event => this.onNameChange(event)}/>
-                </div>
-                <div className="form-group">
-                    <button className="btn btn-primary" type="submit">Add</button>
-                </div>
+            <form onSubmit= {event => this.onSubmit(event)}>
+
+                    <div className="form-group">
+                        <label>Ward No:</label>
+                        <input className="form-control" type="text" placeholder="Enter a uniqe ward number" onChange= {event => this.onWardNoChange(event)}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Ward Category:</label>
+                        <select className="form-control" type="text" onChange= {event => this.onWardCategoryChange(event)}>
+                        <option>Surgical</option>
+                        <option>Pediatrics</option>
+                        <option>Maternity</option>
+                        <option>Geriatrics</option>
+                        <option>Psychiatric</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Ward Type:</label>
+                        <select  className="form-control" type="text" onChange= {event => this.onWardTypeChange(event)}>
+                        <option>Male</option>
+                        <option>Female</option>
+                        </select>
+                    </div>
+
+                <button className="btn btn-primary" type="submit">Add</button>
             </form>
         </div>
     }

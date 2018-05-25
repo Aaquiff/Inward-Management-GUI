@@ -24,8 +24,9 @@ export default class Ward extends Component {
     render() {
         const {ward} = this.props;
         return <tr>
-                <td>{ward.id}</td>
-                <td>{ward.name}</td>
+                <td>{ward.wardNo}</td>
+                <td>{ward.wardCategory}</td>
+                <td>{ward.wardType}</td>
                 <td><button className="btn btn-danger" onClick= {event => this.onClick(event, ward)} >Delete</button></td>
             </tr>
     }
