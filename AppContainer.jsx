@@ -5,6 +5,7 @@ import {HashRouter as Router, Switch, Route, Link, NavLink} from 'react-router-d
 
 import Wards from './wards/Wards.jsx';
 import Beds from './beds/Beds.jsx';
+import Login from './login.jsx';
 
 export default class AppContainer extends Component {
     constructor(props) {
@@ -27,14 +28,20 @@ export default class AppContainer extends Component {
                                     <NavLink className="nav-link" to={'/wards'}>
                                         <span data-feather="home"></span>Ward Management
                                     </NavLink>
+                                    <NavLink className="nav-link" to={'/login'}>
+                                        <span data-feather="login"></span>Login
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>
                     </nav>
                     <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-4">
                     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-                        <Switch>
+                    <Switch>
                             <Route path='/wards' component={Wards}/>
+                        </Switch>
+                        <Switch>
+                            <Route path='/login' component={Login}/>
                         </Switch>
                         </div>
                     </main>
