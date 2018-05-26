@@ -6,13 +6,16 @@ import axios from 'axios';
 
 import AddWards from './AddWard.jsx';
 import ListWards from './ListWards.jsx';
+import Ward from './Ward.jsx';
 
 export default class Wards extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            wards: []
+            wards: [],
+            ward: {},
+            beds: []
         };
     }
 
@@ -20,12 +23,13 @@ export default class Wards extends Component {
         axios.get(`http://localhost:3000/wards`)
             .then(res => {
                 const wards = res.data;
-                this.setState({ wards });
+                this.setState({ 
+                    wards: wards
+                });
             })
     }
 
     addWard(ward) {
-        console.log(JSON.stringify(ward));
         axios.post(`http://localhost:3000/wards`, ward
         ).then((data)=>{
             axios.get(`http://localhost:3000/wards`)
@@ -43,38 +47,61 @@ export default class Wards extends Component {
             .then(res => {
                 const wards = res.data;
                 this.setState({ wards });
-                console.log('Deleted ' + JSON.stringify(ward))
             })
         })
     }
 
+    onView(ward) {
+        axios.get(`http://localhost:3000/wards/`+ward.wardNo+'/beds')
+        .then(res => {
+            this.setState({ 
+                ward: ward,
+                beds: res.data 
+            });
+        });
+    }
+
     render() {
         const {wards} = this.state.wards;
-        return <div>
-            <div className="form-group">
-                    <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Add</button>
+        return <div className='container'>
+            <div className="row">
+                <div className="col-4">
+                    <div className="form-group">
+                            <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">New Ward</button>
+                    </div>
+                    
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">New Ward</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <AddWards addWard = { ward=> this.addWard(ward) } />
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-4">
+                    <ListWards deleteWard={ward=> this.deleteWard(ward)} onView={ward=> this.onView(ward)} wards={this.state.wards} />
+                </div>
+                <div className="col-4">
+                    <Ward ward={this.state.ward} beds={this.state.beds} deleteWard={ward => this.deleteWard(ward)}/>
+                </div>
             </div>
             
-            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">New Ward</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div className="modal-body">
-                    <AddWards addWard = { ward=> this.addWard(ward) } />
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-                </div>
-            </div>
-            </div>
+
             
-            <ListWards deleteWard = {ward=> this.deleteWard(ward)} wards = {this.state.wards} />
+
         </div>
     }
 }

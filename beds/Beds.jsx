@@ -9,19 +9,18 @@ import ListBeds from './ListBeds.jsx';
 
 export default class Beds extends Component {
 
+    static get propTypes() {
+        return {
+            beds: PropTypes.array
+        }
+    }
+
     constructor(props) {
         super(props);
+        const {wardNo} = this.props;
         this.state = {
             beds: []
         };
-    }
-
-    componentDidMount() {
-        axios.get(`http://localhost:3000/beds`)
-            .then(res => {
-                const beds = res.data;
-                this.setState({ beds });
-            })
     }
 
     addBed(bed) {
@@ -48,7 +47,7 @@ export default class Beds extends Component {
     }
 
     render() {
-        const {beds} = this.state.beds;
+        const {beds} = this.props;
         return <div>
             <div className="form-group">
                     <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Add</button>
@@ -73,7 +72,7 @@ export default class Beds extends Component {
             </div>
             </div>
             
-            <ListBeds deleteBed = {bed=> this.deleteBed(bed)} beds = {this.state.beds} />
+            <ListBeds deleteBed = {bed=> this.deleteBed(bed)} beds = {beds} />
         </div>
     }
 }

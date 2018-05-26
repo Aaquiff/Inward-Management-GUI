@@ -3,7 +3,6 @@
 import React, {Component} from 'react';
 import {HashRouter as Router, Switch, Route, Link, NavLink} from 'react-router-dom';
 
-import Users from './users/Users.jsx';
 import Wards from './wards/Wards.jsx';
 import Beds from './beds/Beds.jsx';
 
@@ -26,12 +25,7 @@ export default class AppContainer extends Component {
                             <ul className="nav flex-column">
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to={'/wards'}>
-                                        <span data-feather="home"></span>Wards
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item" >
-                                    <NavLink className="nav-link" to={'/beds'}>
-                                        Beds
+                                        <span data-feather="home"></span>Ward Management
                                     </NavLink>
                                 </li>
                             </ul>
@@ -41,12 +35,11 @@ export default class AppContainer extends Component {
                     <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         <Switch>
                             <Route path='/wards' component={Wards}/>
-                            <Route path='/beds' component={Beds}/>
                         </Switch>
                         </div>
                     </main>
+                    </div>
                 </div>
-            </div>
             
             
             </div>   

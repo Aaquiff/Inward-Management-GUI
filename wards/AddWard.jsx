@@ -14,8 +14,8 @@ export default class AddWard extends Component {
         super(props);
         this.state = {
             wardNo: "",
-            wardCategory: "",
-            wardType: ""
+            wardCategory: "Surgical",
+            wardType: "Male"
         };
         this.onWardNoChange = this.onWardNoChange.bind(this);
         this.onWardCategoryChange = this.onWardCategoryChange.bind(this);
