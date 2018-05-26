@@ -44,34 +44,6 @@ export default class AppContainer extends Component {
         this.props.deleteWard(this.props.ward);
     }
 
-    // addBed(bed) {
-        
-    //     bed.wardNo = this.props.ward.wardNo;
-    //     console.log(bed);
-    //     axios.post(`http://localhost:3000/beds`, bed
-    //     ).then((data)=>{
-    //         axios.get(`http://localhost:3000/beds`)
-    //         .then(res => {
-    //             const beds = res.data;
-    //             this.setState({ 
-    //                 beds 
-    //             });
-    //         })
-    //     })
-    // }
-
-    // deleteBed(bed) {
-        
-    //     axios.delete('http://localhost:3000/beds/'+bed.bedNo).then((data)=>{
-    //         axios.get(`http://localhost:3000/beds`)
-    //         .then(res => {
-    //             const beds = res.data;
-    //             this.setState({ beds });
-    //             console.log('Deleted ' + JSON.stringify(bed))
-    //         })
-    //     })
-    // }
-
     render() {
         const {ward} = this.props;
         const {beds} = this.props;
@@ -86,23 +58,22 @@ export default class AppContainer extends Component {
                     <div className="form-row align-items-center">
                         <div className="col-sm-10 my-1">
                             <label>Ward Category:</label>
-                            <select className="form-control" type="text" onChange= {event => this.onWardCategoryChange(event)}>
-                            <option>Surgical</option>
-                            <option>Pediatrics</option>
-                            <option>Maternity</option>
-                            <option>Geriatrics</option>
-                            <option>Psychiatric</option>
+                            <select className="form-control" type="text" onChange= {event => this.onWardCategoryChange(event)} value={ward.wardCategory}>
+                                <option>Surgical</option>
+                                <option>Pediatrics</option>
+                                <option>Maternity</option>
+                                <option>Geriatrics</option>
+                                <option>Psychiatric</option>
                             </select>
                         </div>
                         <div className="col-sm-10 my-1">
                             <label>Ward Type:</label>
-                            <select  className="form-control" type="text" onChange= {event => this.onWardTypeChange(event)}>
-                            <option>Male</option>
-                            <option>Female</option>
+                            <select  className="form-control" type="text" onChange= {event => this.onWardTypeChange(event)} value={ward.wardType}>
+                                <option>Male</option>
+                                <option>Female</option>
                             </select>
                         </div>
                     </div>
-                    
                 </form>
                 </div>
 

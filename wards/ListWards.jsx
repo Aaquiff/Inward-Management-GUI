@@ -39,12 +39,10 @@ export default class ListWards extends Component {
         const {wards} = this.props;
         return <div className="list-group">
             { wards.map(ward => {
-                return <a className="list-group-item list-group-item-action flex-column align-items-start" key={ward.wardNo} onClick= {event => this.onView(event, ward)}>
-                    <div className="d-flex justify-content-between" >
-                        <h5 className="mb-1">{ward.wardNo}</h5>
-                        
-                    </div>
-                    <p>{ward.wardCategory} - {ward.wardType}</p>
+                    return <a className="list-group-item list-group-item-action flex-column align-items-start" key={ward.wardNo} onClick= {event => this.onView(event, ward)}>
+                    <h5 className="card-title">{ward.wardNo}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">{ward.wardCategory}</h6>
+                    <p className="card-text">{ward.wardType}</p>
                 </a>
                 })
             }
@@ -52,14 +50,3 @@ export default class ListWards extends Component {
 
     }
 }
-
-
-// wards.map(ward => {
-//     return <tr key={ward.wardNo}>
-//         <td>{ward.wardNo}</td>
-//         <td>{ward.wardCategory}</td>
-//         <td>{ward.wardType}</td>
-//         <td><button className="btn btn-danger" onClick= {event => this.onClick(event, ward)} >Delete</button></td>
-//         <td><button className="btn btn-default" onClick= {event => this.onView(event, ward)} >View</button></td>
-//     </tr>
-// })

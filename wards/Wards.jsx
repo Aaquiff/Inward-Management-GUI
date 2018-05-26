@@ -46,7 +46,7 @@ export default class Wards extends Component {
             axios.get(`http://localhost:3000/wards`)
             .then(res => {
                 const wards = res.data;
-                this.setState({ wards });
+                this.setState({ ward: {} });
             })
         })
     }

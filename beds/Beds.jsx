@@ -35,11 +35,14 @@ export default class Beds extends Component {
 
     render() {
         const {beds} = this.props;
-        return <div>
-            <div className="form-group">
+        return <div className="container">
+            <div className="row">
                     <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#newBedModal">New Bed</button>
             </div>
-            
+            <div className="row">
+                <ListBeds deleteBed = {bed=> this.deleteBed(bed)} beds = {beds} />
+            </div>
+
             <div className="modal fade" id="newBedModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -59,7 +62,7 @@ export default class Beds extends Component {
             </div>
             </div>
             
-            <ListBeds deleteBed = {bed=> this.deleteBed(bed)} beds = {beds} />
+            
         </div>
     }
 }
