@@ -12,7 +12,9 @@ export default class AppContainer extends Component {
         return {
             ward: PropTypes.object,
             beds: PropTypes.array,
-            deleteWard: PropTypes.func
+            deleteWard: PropTypes.func,
+            addBed: PropTypes.func,
+            deleteBed: PropTypes.func
         }
     }
 
@@ -20,7 +22,7 @@ export default class AppContainer extends Component {
         super(props);
         this.state = {
             ward : {},
-            beds : []
+            beds: this.props.beds
         }
     }
 
@@ -42,6 +44,34 @@ export default class AppContainer extends Component {
         this.props.deleteWard(this.props.ward);
     }
 
+    // addBed(bed) {
+        
+    //     bed.wardNo = this.props.ward.wardNo;
+    //     console.log(bed);
+    //     axios.post(`http://localhost:3000/beds`, bed
+    //     ).then((data)=>{
+    //         axios.get(`http://localhost:3000/beds`)
+    //         .then(res => {
+    //             const beds = res.data;
+    //             this.setState({ 
+    //                 beds 
+    //             });
+    //         })
+    //     })
+    // }
+
+    // deleteBed(bed) {
+        
+    //     axios.delete('http://localhost:3000/beds/'+bed.bedNo).then((data)=>{
+    //         axios.get(`http://localhost:3000/beds`)
+    //         .then(res => {
+    //             const beds = res.data;
+    //             this.setState({ beds });
+    //             console.log('Deleted ' + JSON.stringify(bed))
+    //         })
+    //     })
+    // }
+
     render() {
         const {ward} = this.props;
         const {beds} = this.props;
@@ -53,7 +83,7 @@ export default class AppContainer extends Component {
                 </div>
                 <div className="row"> 
                 <form onSubmit= {event => this.onSubmit(event)}>
-                    <div class="form-row align-items-center">
+                    <div className="form-row align-items-center">
                         <div className="col-sm-10 my-1">
                             <label>Ward Category:</label>
                             <select className="form-control" type="text" onChange= {event => this.onWardCategoryChange(event)}>
@@ -77,7 +107,7 @@ export default class AppContainer extends Component {
                 </div>
 
                 <div className="row">
-                    <Beds beds={beds} />
+                    <Beds beds={beds} addBed={bed=> this.props.addBed(bed)} deleteBed={bed=> this.props.deleteBed(bed)} />
                 </div>
                 <div className="row">
                     <button className="btn btn-danger" onClick={event=> this.onDeleteClicked(event)}>Delete Ward</button>
@@ -86,7 +116,11 @@ export default class AppContainer extends Component {
         }
         else
         {
-            return <div> </div>
+            return <div className="alert alert-primary" role="alert">
+                <h4 className="alert-heading">Ward Managment</h4>
+                <p>Select a ward from the list to continue</p>
+                <p>Add new ward if no ward is present</p>
+            </div>
         }
     }
 }

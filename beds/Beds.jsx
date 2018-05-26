@@ -11,7 +11,9 @@ export default class Beds extends Component {
 
     static get propTypes() {
         return {
-            beds: PropTypes.array
+            beds: PropTypes.array,
+            addBed: PropTypes.func,
+            deleteBed: PropTypes.func
         }
     }
 
@@ -24,36 +26,21 @@ export default class Beds extends Component {
     }
 
     addBed(bed) {
-        axios.post(`http://localhost:3000/beds`, bed
-        ).then((data)=>{
-            axios.get(`http://localhost:3000/beds`)
-            .then(res => {
-                const beds = res.data;
-                this.setState({ beds });
-            })
-        })
+        this.props.addBed(bed);
     }
 
     deleteBed(bed) {
-        
-        axios.delete('http://localhost:3000/beds/'+bed.bedNo).then((data)=>{
-            axios.get(`http://localhost:3000/beds`)
-            .then(res => {
-                const beds = res.data;
-                this.setState({ beds });
-                console.log('Deleted ' + JSON.stringify(bed))
-            })
-        })
+        this.props.deleteBed(bed);
     }
 
     render() {
         const {beds} = this.props;
         return <div>
             <div className="form-group">
-                    <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Add</button>
+                    <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#newBedModal">New Bed</button>
             </div>
             
-            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="newBedModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">

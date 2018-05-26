@@ -51,6 +51,22 @@ export default class Wards extends Component {
         })
     }
 
+    addBed(bed) {
+        bed.wardNo = this.state.ward.wardNo;
+        console.log(bed);
+        axios.post(`http://localhost:3000/beds`, bed
+        ).then((data)=>{
+            this.onView(this.state.ward)
+        })
+    }
+
+    deleteBed(bed) {
+        
+        axios.delete('http://localhost:3000/beds/'+bed.bedNo).then((data)=>{
+            this.onView(this.state.ward)
+        })
+    }
+
     onView(ward) {
         axios.get(`http://localhost:3000/wards/`+ward.wardNo+'/beds')
         .then(res => {
@@ -95,7 +111,7 @@ export default class Wards extends Component {
                     <ListWards deleteWard={ward=> this.deleteWard(ward)} onView={ward=> this.onView(ward)} wards={this.state.wards} />
                 </div>
                 <div className="col-4">
-                    <Ward ward={this.state.ward} beds={this.state.beds} deleteWard={ward => this.deleteWard(ward)}/>
+                    <Ward ward={this.state.ward} beds={this.state.beds} deleteWard={ward => this.deleteWard(ward)} addBed={bed=> this.addBed(bed)} deleteBed={bed=> this.deleteBed(bed) }/>
                 </div>
             </div>
             

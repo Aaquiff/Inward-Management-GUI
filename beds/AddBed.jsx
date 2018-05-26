@@ -18,7 +18,6 @@ export default class AddWard extends Component {
         };
         this.onBedNoChanged = this.onBedNoChanged.bind(this);
         this.onBedTypeChange = this.onBedTypeChange.bind(this);
-        this.onWardNoChanged = this.onWardNoChanged.bind(this);
     }
 
     onBedNoChanged(event) {
@@ -33,12 +32,6 @@ export default class AddWard extends Component {
         this.state.bedType = event.target.value;
     }
 
-    onWardNoChanged(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.state.wardNo = event.target.value;
-    }
-
     onSubmit(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -47,7 +40,6 @@ export default class AddWard extends Component {
             this.props.addBed({
                 bedNo: this.state.bedNo, 
                 bedType: this.state.bedType,
-                wardNo: this.state.wardNo,
                 availability: "Available"
             });
             this.state.bedNo = '';
@@ -68,10 +60,6 @@ export default class AddWard extends Component {
                         <option>Normal</option>
                         <option>Not Normal</option>
                         </select>
-                    </div>
-                    <div className="form-group">
-                        <label>Ward No:</label>
-                        <input className="form-control" type="text" placeholder="Enter a uniqe bed number" onChange= {event => this.onWardNoChanged(event)}/>
                     </div>
 
                 <button className="btn btn-primary" type="submit">Add</button>

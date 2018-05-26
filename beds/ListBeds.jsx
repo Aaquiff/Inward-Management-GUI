@@ -25,14 +25,14 @@ export default class ListBeds extends Component {
         const {beds} = this.props;
         return <div>
                 <table className="table table-bordered">
-                <thead>
+                <thead className="thead-dark">
                 <tr>
-                <th>Bed No</th>
-                <th>Bed Type</th>
-                <th>BHT No</th>
-                <th>Patient ID</th>
-                <th>Availability</th>
-                <th></th>
+                <th scope="col">Bed No</th>
+                <th scope="col">Bed Type</th>
+                <th scope="col">BHT No</th>
+                <th scope="col">Patient ID</th>
+                <th scope="col">Availability</th>
+                <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
