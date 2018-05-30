@@ -79,7 +79,7 @@ export default class Wards extends Component {
 
     render() {
         const {wards} = this.state.wards;
-        return <div className='container'>
+        return <div>
             <div className="row">
                 <div className="col-4">
                     <div className="form-group">
