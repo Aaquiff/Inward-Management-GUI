@@ -3,8 +3,6 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import AppContainer from './AppContainer.jsx';
-
-import Wards from './wards/Wards';
+import AppContainer from './src/AppContainer.jsx';
 
 render(<AppContainer/>, document.getElementById('app'));
