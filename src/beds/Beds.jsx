@@ -36,9 +36,11 @@ export default class Beds extends Component {
     render() {
         const {beds} = this.props;
         return <div className="container">
+            <br/>
             <div className="row">
                     <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#newBedModal">New Bed</button>
             </div>
+            <br/>
             <div className="row">
                 <ListBeds deleteBed = {bed=> this.deleteBed(bed)} beds = {beds} />
             </div>

@@ -79,13 +79,19 @@ export default class Wards extends Component {
 
     render() {
         const {wards} = this.state.wards;
-        return <div>
-            <div className="row">
+        return<div className="row">
                 <div className="col-4">
+                    <ListWards deleteWard={ward=> this.deleteWard(ward)} onView={ward=> this.onView(ward)} wards={this.state.wards} />
+                </div>
+                <div className="col-8">
+
+                    {/*Start of modal*/}
+                                <div className="row">
+
                     <div className="form-group">
                             <button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">New Ward</button>
                     </div>
-                    
+
                     <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -105,19 +111,12 @@ export default class Wards extends Component {
                     </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-4">
-                    <ListWards deleteWard={ward=> this.deleteWard(ward)} onView={ward=> this.onView(ward)} wards={this.state.wards} />
-                </div>
-                <div className="col-4">
+
+                    {/*End of Modal*/}
+                    <div className="row">
                     <Ward ward={this.state.ward} beds={this.state.beds} deleteWard={ward => this.deleteWard(ward)} addBed={bed=> this.addBed(bed)} deleteBed={bed=> this.deleteBed(bed) }/>
+                    </div>
                 </div>
-            </div>
-            
-
-            
-
         </div>
     }
 }

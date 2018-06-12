@@ -55,18 +55,18 @@ export default class AppContainer extends Component {
                 </div>
                 <div className="row"> 
                 <form onSubmit= {event => this.onSubmit(event)}>
-                    <div className="form-row align-items-center">
-                        <div className="col-sm-10 my-1">
-                            <label>Ward Category:</label>
-                            <select className="form-control" type="text" onChange= {event => this.onWardCategoryChange(event)} value={ward.wardCategory}>
-                                <option>Surgical</option>
-                                <option>Pediatrics</option>
-                                <option>Maternity</option>
-                                <option>Geriatrics</option>
-                                <option>Psychiatric</option>
-                            </select>
+                    <div className="row">
+                        <div className="col">
+                                <label>Ward Category:</label>
+                                <select className="form-control" type="text" onChange= {event => this.onWardCategoryChange(event)} value={ward.wardCategory}>
+                                    <option>Surgical</option>
+                                    <option>Pediatrics</option>
+                                    <option>Maternity</option>
+                                    <option>Geriatrics</option>
+                                    <option>Psychiatric</option>
+                                </select>
                         </div>
-                        <div className="col-sm-10 my-1">
+                        <div className="col">
                             <label>Ward Type:</label>
                             <select  className="form-control" type="text" onChange= {event => this.onWardTypeChange(event)} value={ward.wardType}>
                                 <option>Male</option>
