@@ -41,8 +41,7 @@ export default class ListWards extends Component {
             { wards.map(ward => {
                     return <a className="list-group-item list-group-item-action flex-column align-items-start" key={ward.wardNo} onClick= {event => this.onView(event, ward)}>
                     <h5 className="card-title">{ward.wardNo}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{ward.wardCategory}</h6>
-                    <p className="card-text">{ward.wardType}</p>
+                    <h6 className="card-subtitle mb-2 text-muted">{ward.wardCategory} - {ward.wardType}</h6>
                 </a>
                 })
             }

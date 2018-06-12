@@ -20,10 +20,14 @@ export default class Wards extends Component {
     }
 
     componentDidMount() {
+        this.loadWards();
+    }
+
+    loadWards() {
         axios.get(`http://localhost:3000/wards`)
             .then(res => {
                 const wards = res.data;
-                this.setState({ 
+                this.setState({
                     wards: wards
                 });
             })
@@ -37,17 +41,17 @@ export default class Wards extends Component {
                 const wards = res.data;
                 this.setState({ wards });
             })
+            alert('Ward Added')
         })
     }
 
     deleteWard(ward) {
-        
         axios.delete('http://localhost:3000/wards/'+ward.wardNo).then((data)=>{
-            axios.get(`http://localhost:3000/wards`)
-            .then(res => {
-                const wards = res.data;
-                this.setState({ ward: {} });
-            })
+            this.loadWards();
+            this.setState({
+                ward: {},
+                beds: []
+            });
         })
     }
 
@@ -61,9 +65,9 @@ export default class Wards extends Component {
     }
 
     deleteBed(bed) {
-        
         axios.delete('http://localhost:3000/beds/'+bed.bedNo).then((data)=>{
-            this.onView(this.state.ward)
+            this.onView(this.state.ward);
+            this.onView({});
         })
     }
 
@@ -84,6 +88,7 @@ export default class Wards extends Component {
                     <ListWards deleteWard={ward=> this.deleteWard(ward)} onView={ward=> this.onView(ward)} wards={this.state.wards} />
                 </div>
                 <div className="col-8">
+                    <br/>
                     {/*Start of modal*/}
                     <div className="row">
                         <div className="form-group">

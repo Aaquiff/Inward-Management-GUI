@@ -49,7 +49,7 @@ export default class AppContainer extends Component {
         const {beds} = this.props;
         if(ward.wardNo != null)
         {
-            return <div className="container"> 
+            return <div className="container">
                 <div className="row"> 
                     <h2>Ward - {ward.wardNo}</h2>
                 </div>
@@ -87,10 +87,9 @@ export default class AppContainer extends Component {
         }
         else
         {
-            return <div className="alert alert-primary" role="alert">
+            return <div>
                 <h4 className="alert-heading">Ward Managment</h4>
-                <p>Select a ward from the list to continue</p>
-                <p>Add new ward if no ward is present</p>
+                <p>Select a ward from the list to continue.Add new ward if no ward is present</p>
             </div>
         }
     }
