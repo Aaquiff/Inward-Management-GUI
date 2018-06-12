@@ -7,8 +7,11 @@ import axios from 'axios';
 import AddWards from './AddWard.jsx';
 import ListWards from './ListWards.jsx';
 import Ward from './Ward.jsx';
+var API_URL = 'http://localhost:3000';
 
 export default class Wards extends Component {
+
+
 
     constructor(props) {
         super(props);
@@ -24,7 +27,7 @@ export default class Wards extends Component {
     }
 
     loadWards() {
-        axios.get(`http://localhost:3000/wards`)
+        axios.get(API_URL + `/wards`)
             .then(res => {
                 const wards = res.data;
                 this.setState({
@@ -34,7 +37,7 @@ export default class Wards extends Component {
     }
 
     addWard(ward) {
-        axios.post(`http://localhost:3000/wards`, ward
+        axios.post(API_URL + `/wards`, ward
         ).then((data)=>{
             axios.get(`http://localhost:3000/wards`)
             .then(res => {
@@ -46,7 +49,7 @@ export default class Wards extends Component {
     }
 
     deleteWard(ward) {
-        axios.delete('http://localhost:3000/wards/'+ward.wardNo).then((data)=>{
+        axios.delete(API_URL + '/wards/'+ward.wardNo).then((data)=>{
             this.loadWards();
             this.setState({
                 ward: {},
@@ -65,14 +68,14 @@ export default class Wards extends Component {
     }
 
     deleteBed(bed) {
-        axios.delete('http://localhost:3000/beds/'+bed.bedNo).then((data)=>{
+        axios.delete(API_URL + '/beds/'+bed.bedNo).then((data)=>{
             this.onView(this.state.ward);
             this.onView({});
         })
     }
 
     onView(ward) {
-        axios.get(`http://localhost:3000/wards/`+ward.wardNo+'/beds')
+        axios.get(API_URL + `/wards/`+ward.wardNo+'/beds')
         .then(res => {
             this.setState({ 
                 ward: ward,
