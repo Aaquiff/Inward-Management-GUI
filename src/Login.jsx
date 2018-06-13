@@ -43,15 +43,21 @@ export default class Login extends Component {
     }
 
     render() {
-        return <div className="text-center">
+        return <div className="container"><br/><div className="text-center">
         <form className="form-signin">
-            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label className="sr-only">Password</label>
-            <input onChange={(event)=>this.onUsernameChanged(event)} type="text" className="form-control" placeholder="Username" required/>
-            <label className="sr-only">Password</label>
-            <input onChange={(event)=>this.onPasswordChanged(event)} type="password" className="form-control" placeholder="Password" required/>
-            <button onClick={(event)=>{this.onSubmit(event)}} className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <div className="form-group">
+                <label className="sr-only">Password</label>
+                <input onChange={(event)=>this.onUsernameChanged(event)} type="text" className="form-control" placeholder="Username" required/>
+            </div>
+            <div className="form-group">
+                <label className="sr-only">Password</label>
+                <input onChange={(event)=>this.onPasswordChanged(event)} type="password" className="form-control" placeholder="Password" required/>
+            </div>
+            <div className="form-group">
+                <button onClick={(event)=>{this.onSubmit(event)}} className="btn btn-primary btn-block" type="submit">Sign in</button>
+            </div>
         </form>
+        </div>
         </div>
     }
 
