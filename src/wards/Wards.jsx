@@ -7,11 +7,13 @@ import axios from 'axios';
 import AddWards from './AddWard.jsx';
 import ListWards from './ListWards.jsx';
 import Ward from './Ward.jsx';
-var API_URL = 'http://localhost:3000';
+
+import Cookies from 'universal-cookie'
+const cookies = new Cookies();
+
+var API_URL = 'http://localhost:3000/api';
 
 export default class Wards extends Component {
-
-
 
     constructor(props) {
         super(props);
@@ -27,7 +29,8 @@ export default class Wards extends Component {
     }
 
     loadWards() {
-        axios.get(API_URL + `/wards`)
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.get(API_URL + `/wards`,  config)
             .then(res => {
                 const wards = res.data;
                 this.setState({
@@ -37,19 +40,19 @@ export default class Wards extends Component {
     }
 
     addWard(ward) {
-        axios.post(API_URL + `/wards`, ward
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.post(API_URL + `/wards`, ward, config
         ).then((data)=>{
-            axios.get(`http://localhost:3000/wards`)
+            axios.get(API_URL + `/wards`, config)
             .then(res => {
-                const wards = res.data;
-                this.setState({ wards });
-            })
-            alert('Ward Added')
+                this.loadWards();
+            });
         })
     }
 
     deleteWard(ward) {
-        axios.delete(API_URL + '/wards/'+ward.wardNo).then((data)=>{
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.delete(API_URL + '/wards/'+ward.wardNo, config).then((data)=>{
             this.loadWards();
             this.setState({
                 ward: {},
@@ -60,22 +63,24 @@ export default class Wards extends Component {
 
     addBed(bed) {
         bed.wardNo = this.state.ward.wardNo;
-        console.log(bed);
-        axios.post(`http://localhost:3000/beds`, bed
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.post(API_URL +`/beds`, bed, config
         ).then((data)=>{
             this.onView(this.state.ward)
         })
     }
 
     deleteBed(bed) {
-        axios.delete(API_URL + '/beds/'+bed.bedNo).then((data)=>{
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.delete(API_URL + '/beds/'+bed.bedNo, config).then((data)=>{
             this.onView(this.state.ward);
             this.onView({});
         })
     }
 
     onView(ward) {
-        axios.get(API_URL + `/wards/`+ward.wardNo+'/beds')
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.get(API_URL + `/wards/`+ward.wardNo+'/beds', config)
         .then(res => {
             this.setState({ 
                 ward: ward,

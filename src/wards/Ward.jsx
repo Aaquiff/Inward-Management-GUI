@@ -3,6 +3,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Cookies from 'universal-cookie'
+const cookies = new Cookies();
 
 import Beds from '../beds/Beds.jsx';
 
@@ -27,9 +29,11 @@ export default class AppContainer extends Component {
     }
 
     componentWillMount() {
-        console.log('Mount');
         const {ward} = this.props;
-        axios.get(`http://localhost:3000/wards/`+ward.wardNo+'/beds')
+        if(ward.ward == undefined) return;
+
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.get(`http://localhost:3000/wards/`+ward.wardNo+'/beds', config)
         .then(res => {
             this.setState({ 
                 ward: ward,
