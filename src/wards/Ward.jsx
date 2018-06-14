@@ -42,6 +42,8 @@ export default class AppContainer extends Component {
         })
     }
 
+    loadBeds() {}
+
     onDeleteClicked(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -53,32 +55,32 @@ export default class AppContainer extends Component {
         const {beds} = this.props;
         if(ward.wardNo != null)
         {
-            return <div className="container">
-                <div className="row"> 
+            return <div className="container-fluid">
+                <div className="row">
                     <h2>Ward - {ward.wardNo}</h2>
                 </div>
-                <div className="row"> 
-                <form onSubmit= {event => this.onSubmit(event)}>
-                    <div className="row">
-                        <div className="col">
+                <div className="row">
+                    <form onSubmit={event => this.onSubmit(event)}>
+                            <div className="form-group">
                                 <label>Ward Category:</label>
-                                <select className="form-control" type="text" onChange= {event => this.onWardCategoryChange(event)} value={ward.wardCategory}>
+                                <select className="form-control" type="text"
+                                        onChange={event => this.onWardCategoryChange(event)} value={ward.wardCategory}>
                                     <option>Surgical</option>
                                     <option>Pediatrics</option>
                                     <option>Maternity</option>
                                     <option>Geriatrics</option>
                                     <option>Psychiatric</option>
                                 </select>
-                        </div>
-                        <div className="col">
-                            <label>Ward Type:</label>
-                            <select  className="form-control" type="text" onChange= {event => this.onWardTypeChange(event)} value={ward.wardType}>
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+                            </div>
+                            <div className="form-group">
+                                <label>Ward Type:</label>
+                                <select className="form-control" type="text"
+                                        onChange={event => this.onWardTypeChange(event)} value={ward.wardType}>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                    </form>
                 </div>
 
                 <div className="row">
