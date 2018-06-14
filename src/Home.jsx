@@ -6,6 +6,13 @@ export default class Home extends Component {
     }
 
     render() {
-        return <div className="container-fluid"><h1>Home</h1></div>
+        return <div className="container-fluid">
+            <div className="jumbotron jumbotron-fluid">
+                <div className="container">
+                    <h1 className="display-4">Welcome to Inward Management System</h1>
+                    <p className="lead"></p>
+                </div>
+            </div>
+        </div>
     }
-}
+    }
