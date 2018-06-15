@@ -38,7 +38,7 @@ export default class AppContainer extends Component {
             <Route path='/discharge' component={Discharge}/>
         </Switch>
         <Switch>
-            <Route path='/prescription' component={Prescription}/>
+            <Route path='/prescription/:bht/:patientId' component={Prescription}/>
         </Switch>
     </div>
 </Router>
