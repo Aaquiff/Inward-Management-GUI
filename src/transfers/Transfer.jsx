@@ -45,7 +45,7 @@ export default class Transfer extends Component {
         var config = { headers: { 'x-access-token': cookies.get('token') } };
         axios.post(API_URL + `/inttransfers/` + patId, newAdmission, config)
             .then(res => {
-                alert("added");
+                //alert("added");
             });
     }
 
@@ -63,7 +63,7 @@ export default class Transfer extends Component {
         var updatedObj = this.state.selected;
         updatedObj.wardNo = newAdmission.transferWard;
         updatedObj.bedNo = newAdmission.bedNo;
-
+        this.addTransfer(newAdmission, updatedObj.patientId);
         this.setState({
             admissions: this.state.admissions,
             selected: updatedObj
@@ -71,7 +71,7 @@ export default class Transfer extends Component {
         this.updateAdmissions();
         console.log('TRANSFEassasassa'+updatedObj.patientId);
         console.log(newAdmission);
-        this.addTransfer(newAdmission, updatedObj.patientId);
+        //this.addTransfer(newAdmission, updatedObj.patientId);
     }
 
     render() {
@@ -83,12 +83,11 @@ export default class Transfer extends Component {
                 {this.state.admissions.map((admission) => {
                     return <div className="list-group-item list-group-item-action flex-column align-items-start" key={admission.BHTNo} onClick= {event => this.onView(event, admission)}>
 
-                    <label className="card-subtitle">BHTNo : {admission.bhtNo}</label>
+                    <label className="card-subtitle">BHTNo : {admission.bhtNo}  - </label>
                     <label className="card-subtitle">Patient ID : {admission.patientId}</label><br/>
                     <label className="card-subtitle">Ward : {admission.wardNo} - </label>
                     <label className="card-subtitle">Bed : {admission.bedNo}</label><br/>
-                    <label className="card-subtitle">Admitted date : {admission.admittedDate}</label><br/>
-                    <button type="button">Delete</button>
+                    <label className="card-subtitle">Admitted date : {admission.admittedDate}</label>
                     </div>
                 })}
                 </div>

@@ -71,13 +71,13 @@ export default class addAllergy extends Component {
                         <option>10</option>
                 </select>
                 <label>Transfer report</label>
-                <textarea  className="form-control"  rows = "5" placeholder="Enter Report" ref="report" />
+                <textarea  className="form-control"  rows = "3" placeholder="Enter Report" ref="report" />
                 <label>Transfer reason</label>
                 <input className="form-control" type="text" placeholder="Enter reason" ref="reason"/>
                 <label>Treatment</label>
-                <textarea  className="form-control"  rows = "5" placeholder="Enter treatment" ref="treatment" />
+                <textarea  className="form-control"  rows = "3" placeholder="Enter treatment" ref="treatment" />
                 <label>Date</label>
-                <input className="form-control" type="text" placeholder="Enter date" ref="tdate"/>
+                <input className="form-control" type="date" placeholder="Enter date" ref="tdate"/>
                 <label>Remarks</label>
                 <input className="form-control" type="text" placeholder="Enter remarks" ref="remarks"/>
             </div>
