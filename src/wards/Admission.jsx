@@ -53,7 +53,7 @@ export default class Admission extends Component {
                         <td>{admission.bedNo}</td>
                         <td>{admission.admittedDate}</td>
                         <td>
-                            <Link to={'/prescription/'+admission.bhtNo+'/'+admission.patientId}>
+                            <Link to={'/prescriptions/'+admission.bhtNo+'/'+admission.patientId}>
                                 <button type="button" className="btn btn-outline-info">
                                     <i className="fa fa-edit"></i> Prescription
                                 </button>

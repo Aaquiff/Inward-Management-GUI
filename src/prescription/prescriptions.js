@@ -21,7 +21,7 @@ export default class Prescriptions extends React.Component {
         var config = { 
             headers: { 'x-access-token': cookies.get('token') } 
         };
-        axios.get( API_URL+'prescription/'+this.state.bht+'/'+this.state.patientId , config)
+        axios.get( API_URL+'prescriptions/'+this.state.bht+'/'+this.state.patientId , config)
         .then(res=>{
             this.setState({
                 prescriptions: res.data
@@ -37,11 +37,13 @@ export default class Prescriptions extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Hello</h1>
-                <h3>BHT No : {this.state.bht}</h3>
-                <h3>Patient ID : {this.state.patientId}</h3>
-            </div>
+            // <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div>
+                    <h1>Hello</h1>
+                    <h3>BHT No : {this.state.bht}</h3>
+                    <h3>Patient ID : {this.state.patientId}</h3>
+                </div>
+            //</main>           
         );
     }
 }
