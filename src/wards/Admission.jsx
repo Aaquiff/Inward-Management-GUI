@@ -51,7 +51,7 @@ export default class Admission extends Component {
                         <td>{admission.patientId}</td>
                         <td>{admission.wardNo}</td>
                         <td>{admission.bedNo}</td>
-                        <td>{admission.admittedDate}</td>
+                        <td>{new Date(admission.admittedDate).toLocaleDateString('en-GB', { timeZone: 'UTC', hour12 :false, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })}</td>
                         <td>
                             <Link to={'/prescriptions/'+admission.bhtNo+'/'+admission.patientId}>
                                 <button type="button" className="btn btn-outline-info">

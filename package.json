@@ -25,6 +25,7 @@
     "axios": "^0.18.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-toasts": "^2.0.6",
     "universal-cookie": "^2.1.5"
   }
 }

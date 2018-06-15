@@ -40,7 +40,7 @@ export default class ListAdmissions extends Component {
                     <h5 className="card-title">Admission ID: {admission.admissionId}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">Patient: {admission.patient.name}</h6>
                     <h6 className="card-subtitle mb-2 text-muted">Doctor: {admission.doctor.name}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Admitted Date: {admission.admittedDate}</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">Admitted Date: {new Date(admission.admittedDate).toLocaleDateString('en-GB', { timeZone: 'UTC', hour12 :false, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })}</h6>
                 </a>
                 })
             }

@@ -11,6 +11,9 @@ const cookies = new Cookies();
 
 var API_URL = 'http://localhost:3000/api';
 
+import { ToastContainer, ToastStore } from 'react-toasts';
+
+
 export default class AddAdmission extends Component {
     static get propTypes() {
         return {
@@ -92,9 +95,10 @@ export default class AddAdmission extends Component {
                 complain: this.state.complain
             }
 
-            console.log(admissionObj)
-
             this.addAdmission(admissionObj);
+        }
+        else {
+            ToastStore.error("Please fill the required fields.");
         }
 
     }
@@ -115,6 +119,9 @@ export default class AddAdmission extends Component {
         var config = { headers: { 'x-access-token': cookies.get('token') } };
         axios.post(API_URL + `/admissions`, admissionObj, config).then((data) => {
             document.getElementById("frmAdmission").reset();
+            ToastStore.success("Success!!");
+        }).catch((err) => {
+            ToastStore.error("An error occured!");
         })
     }
 
@@ -133,6 +140,7 @@ export default class AddAdmission extends Component {
         console.log(this.props);
         if (patient.patientId != null) {
             return <div className="container-fluid" >
+                <ToastContainer store={ToastStore} />
                 <div className="row">
                     <div className="col-sm">
                         <h2>{patient.name}/{patient.gender}</h2>

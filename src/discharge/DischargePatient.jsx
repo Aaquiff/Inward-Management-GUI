@@ -7,6 +7,9 @@ import axios from 'axios';
 
 import Cookies from 'universal-cookie'
 
+import {ToastContainer, ToastStore} from 'react-toasts';
+
+
 const cookies = new Cookies();
 
 var API_URL = 'http://localhost:3000/api';
@@ -142,6 +145,9 @@ export default class DischargePatient extends Component {
             
             this.dischargePatient(dischargePatientObj);
         }
+        else {
+            ToastStore.error("Please fill the required fields.")
+        }
 
     }
 
@@ -157,7 +163,10 @@ export default class DischargePatient extends Component {
         var config = { headers: { 'x-access-token': cookies.get('token') } };
         axios.post(API_URL + `/discharges`, dischargeObj, config).then((data) => {
             document.getElementById("frmDischarge").reset();
+            ToastStore.success("Success!!")
             this.props.reLoadAdmissions();
+        }).catch((err) => {
+            console.log(err);
         })
     }
 
@@ -175,6 +184,7 @@ export default class DischargePatient extends Component {
         const { admission } = this.props;
         if (admission.admissionId != null) {
             return <div className="container-fluid" >
+                <ToastContainer store={ToastStore}/>
                 <div className="row">
                     <div className="col-sm">
                         <h2>{admission.patient.name}/{admission.patient.gender}</h2>
@@ -207,7 +217,7 @@ export default class DischargePatient extends Component {
                                 <input className="form-control" type="text" placeholder="Enter ICD Code" onChange={event => this.onICDCodeChange(event)} />
 
                                 <input className="form-control" type="text" name="patient" placeholder="Enter Patient ID" onChange={event => this.onPatientIdChange(event)} value={admission.patient.patientId} hidden />
-                                <input className="form-control" type="text" name="doctor" placeholder="Enter DoctorID" onChange={event => this.onDoctorIdChange(event)} value={admission.doctor.doctorId} hidden/>
+                                <input className="form-control" type="text" name="doctor" placeholder="Enter DoctorID" onChange={event => this.onDoctorIdChange(event)} value={admission.doctor.doctorId} hidden />
                             </div>
 
                             <button className="btn btn-primary" type="submit">Discharge Patient</button>
