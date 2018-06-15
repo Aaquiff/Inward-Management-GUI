@@ -22,7 +22,7 @@ export default class Navigator extends Component {
 
     renderLoggedIn() {
         return <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <a className="navbar-brand" href="index.html">IMS</a>
+            <a className="navbar-brand" href="index.html">Inward Management System</a>
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -30,15 +30,9 @@ export default class Navigator extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
-                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
-                        <a className="nav-link" onClick={(event) => {
-                            this.logout(event)
-                        }} to={'/login'}>Logout</a>
-                    </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
                         <NavLink className="nav-link" to={'/home'}>Home</NavLink>
                     </li>
-
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Ward">
                         <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse"
                             href="#collapseComponents" data-parent="#exampleAccordion">
@@ -66,11 +60,11 @@ export default class Navigator extends Component {
                         </ul>
                     </li>
                 </ul>
-                <ul className="navbar-nav sidenav-toggler">
-                    <li className="nav-item">
-                        <a className="nav-link text-center" id="sidenavToggler">
-                            <i className="fa fa-fw fa-angle-left"></i>
-                        </a>
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
+                        <a className="nav-link" onClick={(event) => {
+                            this.logout(event)
+                        }} to={'/login'}><i className="fa fa-fw fa-sign-out"></i>Logout</a>
                     </li>
                 </ul>
             </div>
@@ -79,24 +73,16 @@ export default class Navigator extends Component {
 
     renderLoggedOut() {
         return <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <a className="navbar-brand" href="index.html">IMS</a>
+            <a className="navbar-brand" href="index.html">Inward Management System</a>
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
-                <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <ul className="navbar-nav ml-auto">
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Login">
-                        <NavLink className="nav-link" to={'/login'}>Login</NavLink>
-                    </li>
-
-                </ul>
-                <ul className="navbar-nav sidenav-toggler">
-                    <li className="nav-item">
-                        <a className="nav-link text-center" id="sidenavToggler">
-                            <i className="fa fa-fw fa-angle-left"></i>
-                        </a>
+                        <NavLink className="nav-link" to={'/login'}><i className="fa fa-fw fa-sign-in"></i> Login</NavLink>
                     </li>
                 </ul>
             </div>
