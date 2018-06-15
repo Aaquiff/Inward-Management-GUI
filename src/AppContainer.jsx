@@ -9,6 +9,9 @@ import Login from './Login.jsx';
 import Navigator from "./Navigator";
 import Home from "./Home";
 import Admission from "./wards/Admission";
+import Discharge from "./discharge/Discharge";
+
+
 
 export default class AppContainer extends Component {
     constructor(props) {
@@ -30,6 +33,9 @@ export default class AppContainer extends Component {
         </Switch>
         <Switch>
             <Route path='/login' component={Login}/>
+        </Switch>
+        <Switch>
+            <Route path='/Discharge' component={Discharge}/>
         </Switch>
     </div>
 </Router>
