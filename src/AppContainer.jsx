@@ -14,6 +14,7 @@ import Prescriptions from "./prescription/prescriptions";
 import Allergies from "./allergies/Allergies";
 import PatientAdmission from "./admissions/admission";
 import Transfers from "./transfers/Transfer";
+import TransferDet from "./transfers/TransferHist";
 
 export default class AppContainer extends Component {
     constructor(props) {
@@ -50,6 +51,9 @@ export default class AppContainer extends Component {
         </Switch>
         <Switch>
             <Route path='/transfers' component={Transfers}/>
+        </Switch>
+        <Switch>
+            <Route path='/transfershist' component={TransferDet}/>
         </Switch>
     </div>
 </Router>

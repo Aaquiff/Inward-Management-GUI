@@ -41,14 +41,11 @@ export default class Transfer extends Component {
             });
     }
 
-    addTransfer() {
+    addTransfer(newAdmission, patId) {
         var config = { headers: { 'x-access-token': cookies.get('token') } };
-        axios.get(API_URL + `/admissions`, config)
+        axios.post(API_URL + `/inttransfers/` + patId, newAdmission, config)
             .then(res => {
-                this.setState({
-                    admissions: res.data,
-                    selected: {}
-                });
+                alert("added");
             });
     }
 
@@ -72,6 +69,9 @@ export default class Transfer extends Component {
             selected: updatedObj
         })
         this.updateAdmissions();
+        console.log('TRANSFEassasassa'+updatedObj.patientId);
+        console.log(newAdmission);
+        this.addTransfer(newAdmission, updatedObj.patientId);
     }
 
     render() {
@@ -93,6 +93,11 @@ export default class Transfer extends Component {
                 })}
                 </div>
                 <div className="col-4">
+                            <Link to={'/transfershist'}>
+                                <button type="button" className="btn btn-outline-info">
+                                    <i className="fa fa-edit"></i> View Transfers
+                                </button>
+                            </Link>
                     <DoTransfer transferPatient={newAdmission=> this.transferPatient(newAdmission)} />
                 </div>
             </div>
