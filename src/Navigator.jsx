@@ -60,6 +60,9 @@ export default class Navigator extends Component {
                             <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Discharge Patient">
                                 <NavLink className="nav-link" to={'/discharge'}>Discharge</NavLink>
                             </li>
+                            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Allergies">
+                                <NavLink className="nav-link" to={'/allergies'}>Allergies</NavLink>
+                            </li>
                         </ul>
                     </li>
                 </ul>

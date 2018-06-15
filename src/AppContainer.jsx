@@ -11,6 +11,7 @@ import Home from "./Home";
 import Admission from "./wards/Admission";
 import Discharge from "./discharge/Discharge";
 import Prescription from "./prescription/prescription";
+import Allergies from "./allergies/Allergies";
 
 
 export default class AppContainer extends Component {
@@ -39,6 +40,9 @@ export default class AppContainer extends Component {
         </Switch>
         <Switch>
             <Route path={"/prescription/:bht/:patientId"} component={Prescription}/>
+        </Switch>
+        <Switch>
+            <Route path='/allergies' component={Allergies}/>
         </Switch>
     </div>
 </Router>
