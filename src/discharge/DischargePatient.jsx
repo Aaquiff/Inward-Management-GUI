@@ -14,7 +14,7 @@ var API_URL = 'http://localhost:3000/api';
 export default class DischargePatient extends Component {
     static get propTypes() {
         return {
-            dischargePatient: PropTypes.func,
+            reLoadAdmissions: PropTypes.func,
             admission: PropTypes.object
         }
     }
@@ -117,17 +117,18 @@ export default class DischargePatient extends Component {
         this.state.admissionId = event.target.value;
     }
 
-    onSubmit(event) {
+    onSubmit(event, admission) {
         event.preventDefault();
         event.stopPropagation();
-        if (this.state.patientId &&
-            this.state.doctorId &&
+        console.log(admission);
+        if (admission.patientId &&
+            admission.doctorId &&
             this.state.dischargeType &&
             this.state.dischargeDate) {
 
             var dischargePatientObj = {
-                patientId: this.state.patientId,
-                doctorId: this.state.doctorId,
+                patientId: admission.patientId,
+                doctorId: admission.doctorId,
                 dischargeType: this.state.dischargeType,
                 dischargeDate: this.state.dischargeDate,
                 remark: this.state.remark,
@@ -135,10 +136,12 @@ export default class DischargePatient extends Component {
                 outcome: this.state.dischargoutcomeeDate,
                 diagnosis: this.state.diagnosis,
                 elmmr: this.state.elmmr,
-                icdCode: this.state.icdCode
+                icdCode: this.state.icdCode,
+                admissionId: admission.admissionId
             }
-
-            this.dischargePatient(dischargePatientObj);
+            
+            //this.dischargePatient(dischargePatientObj);
+            this.props.reLoadAdmissions();
         }
 
     }
@@ -153,7 +156,7 @@ export default class DischargePatient extends Component {
 
     dischargePatient(dischargeObj) {
         var config = { headers: { 'x-access-token': cookies.get('token') } };
-        axios.post(API_URL + `/discharge`, dischargeObj, config).then((data) => {
+        axios.post(API_URL + `/discharges`, dischargeObj, config).then((data) => {
             console.log(data);
         })
     }
@@ -170,7 +173,6 @@ export default class DischargePatient extends Component {
 
     render() {
         const { admission } = this.props;
-        console.log(admission);
         if (admission.admissionId != null) {
             return <div className="container-fluid" >
                 <div className="row">
@@ -180,7 +182,7 @@ export default class DischargePatient extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm">
-                        <form onSubmit={event => this.onSubmit(event)}>
+                        <form onSubmit={(event) => this.onSubmit(event, admission)}>
                             <div className="form-group">
                                 <label>Discharge Type:</label>
                                 <select className="form-control" type="text" onChange={event => this.onDischargeTypeChange(event)}>
@@ -203,6 +205,9 @@ export default class DischargePatient extends Component {
                                 <input className="form-control" type="text" placeholder="Enter Discharge elmmr" onChange={event => this.onLMMRChange(event)} />
                                 <label>ICD Code</label>
                                 <input className="form-control" type="text" placeholder="Enter ICD Code" onChange={event => this.onICDCodeChange(event)} />
+
+                                <input className="form-control" type="text" name="patient" placeholder="Enter Patient ID" onChange={event => this.onPatientIdChange(event)} value={admission.patient.patientId} hidden />
+                                <input className="form-control" type="text" name="doctor" placeholder="Enter DoctorID" onChange={event => this.onDoctorIdChange(event)} value={admission.doctor.doctorId} hidden/>
                             </div>
 
                             <button className="btn btn-primary" type="submit">Discharge Patient</button>

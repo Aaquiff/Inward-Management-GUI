@@ -37,6 +37,15 @@ export default class Discharge extends Component {
         })
     }
 
+    reLoadAdmissions() {
+        this.setState({
+            admissions: [],
+            admission: {}
+        });
+        console.log("reLoading");
+        getAdmissions();
+    }
+
     onView(admission) {
         this.setState({
             admission: admission
@@ -51,7 +60,7 @@ export default class Discharge extends Component {
             </div>
 
             <div className="row">
-                <DischargePatient admission={this.state.admission} />
+                <DischargePatient admission={this.state.admission} reLoadAdmissions = {() => this.reLoadAdmissions} />
             </div>
         </div>
 
