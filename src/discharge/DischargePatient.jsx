@@ -140,8 +140,7 @@ export default class DischargePatient extends Component {
                 admissionId: admission.admissionId
             }
             
-            //this.dischargePatient(dischargePatientObj);
-            this.props.reLoadAdmissions();
+            this.dischargePatient(dischargePatientObj);
         }
 
     }
@@ -157,7 +156,8 @@ export default class DischargePatient extends Component {
     dischargePatient(dischargeObj) {
         var config = { headers: { 'x-access-token': cookies.get('token') } };
         axios.post(API_URL + `/discharges`, dischargeObj, config).then((data) => {
-            console.log(data);
+            document.getElementById("frmDischarge").reset();
+            this.props.reLoadAdmissions();
         })
     }
 
@@ -182,7 +182,7 @@ export default class DischargePatient extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm">
-                        <form onSubmit={(event) => this.onSubmit(event, admission)}>
+                        <form onSubmit={(event) => this.onSubmit(event, admission)} id="frmDischarge">
                             <div className="form-group">
                                 <label>Discharge Type:</label>
                                 <select className="form-control" type="text" onChange={event => this.onDischargeTypeChange(event)}>

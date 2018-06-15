@@ -12,7 +12,7 @@ import Admission from "./wards/Admission";
 import Discharge from "./discharge/Discharge";
 import Prescriptions from "./prescription/prescriptions";
 import Allergies from "./allergies/Allergies";
-
+import PatientAdmission from "./admissions/admission";
 
 export default class AppContainer extends Component {
     constructor(props) {
@@ -43,6 +43,9 @@ export default class AppContainer extends Component {
         </Switch>
         <Switch>
             <Route path='/allergies' component={Allergies}/>
+        </Switch>
+        <Switch>
+            <Route path='/admission' component={PatientAdmission}/>
         </Switch>
     </div>
 </Router>

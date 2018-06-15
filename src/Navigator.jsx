@@ -53,10 +53,12 @@ export default class Navigator extends Component {
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Patient">
                         <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse"
                             href="#collapsePatientComponents" data-parent="#exampleAccordion">
-                            <span className="nav-link-text">Patient</span>
+                            <span className="nav-link-text"><i class="fa fa-fw fa-heartbeat"></i> Patient</span>
                         </a>
                         <ul className="sidenav-second-level collapse" id="collapsePatientComponents">
-
+                            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Admit Patient">
+                                <NavLink className="nav-link" to={'/admission'}>Admission</NavLink>
+                            </li>
                             <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Discharge Patient">
                                 <NavLink className="nav-link" to={'/discharge'}>Discharge</NavLink>
                             </li>
