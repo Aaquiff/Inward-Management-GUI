@@ -30,10 +30,12 @@ export default class Login extends Component {
     onSubmit(event){
         event.preventDefault();
         event.stopPropagation();
-        axios.post('http://localhost:3000/login',{
+        var config = {headers: {'Access-Control-Allow-Origin': '*'}};
+
+        axios.post('http://localhost:3000/login', {
             username: this.state.username,
             password:this.state.password
-        }).then((data)=>{
+        },config).then((data)=>{
             cookies.set('token',data.data.token,{ path: '/'});
             this.props.history.push("/");
         }).catch((data)=>{
