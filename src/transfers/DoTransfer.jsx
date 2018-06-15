@@ -82,7 +82,7 @@ export default class addAllergy extends Component {
                 <input className="form-control" type="text" placeholder="Enter remarks" ref="remarks"/>
             </div>
             <br/>
-            <input type="submit" value="Transfer"/>
+            <input class="btn btn-dark" type="submit" value="Transfer"/>
         </form>
     </div>
     }

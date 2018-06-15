@@ -27,15 +27,15 @@ export default class AllergyList extends Component {
     render() {
         const {patientAllergies} = this.props;
         console.log(patientAllergies.data);
-        return <div className="list-group">
+        return <div  class="list-group" id="list-tab" role="tablist">
             { patientAllergies.map(obj => {
-                    return <div className="list-group-item" key={obj.allergyId}>
+                    return <div class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" key={obj.allergyId}>
                     <h5 className="card-title">Alergy : {obj.allergyName}</h5>
                     <label className="card-subtitle">Status : {obj.allergyStatus}</label><br/>
                     <label className="card-subtitle">Remarks : {obj.allergyRemarks}</label><br/>
                     <label className="card-subtitle">Category : {obj.allergyCategory}</label><br/>
                     <label className="card-subtitle">Severity : {obj.allergySeverity}</label><br/>
-                    <button type="button" onClick={this.deleteAllergy.bind(this, obj.allergyId)} >Delete</button>
+                    <button class="btn btn-dark" type="button" onClick={this.deleteAllergy.bind(this, obj.allergyId)} >Delete</button>
                 </div>
                 })
             }

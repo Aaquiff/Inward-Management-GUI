@@ -74,7 +74,7 @@ export default class addAllergy extends Component {
                 </select>
             </div>
             <br/>
-            <input type="submit" value="Add"/>
+            <input class="btn btn-dark" type="submit" value="Add"/>
         </form>
     </div>
     }

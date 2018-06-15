@@ -78,10 +78,12 @@ export default class Transfer extends Component {
         console.log(this.state.admissions.length);
         return <div class="container">
             <h3>Transfer Patient</h3>
+            <br/> <label>Select a patient to transfer</label>
             <div className="row">
             <div className="col-8">
+            <div  class="list-group" id="list-tab" role="tablist">
                 {this.state.admissions.map((admission) => {
-                    return <div className="list-group-item list-group-item-action flex-column align-items-start" key={admission.BHTNo} onClick= {event => this.onView(event, admission)}>
+                    return <div class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" key={admission.BHTNo} onClick= {event => this.onView(event, admission)}>
 
                     <label className="card-subtitle">BHTNo : {admission.bhtNo}  - </label>
                     <label className="card-subtitle">Patient ID : {admission.patientId}</label><br/>
@@ -91,9 +93,10 @@ export default class Transfer extends Component {
                     </div>
                 })}
                 </div>
+                </div>
                 <div className="col-4">
                             <Link to={'/transfershist'}>
-                                <button type="button" className="btn btn-outline-info">
+                                <button  type="button" className="btn btn-outline-info">
                                     <i className="fa fa-edit"></i> View Transfers
                                 </button>
                             </Link>
