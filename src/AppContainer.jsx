@@ -10,7 +10,7 @@ import Navigator from "./Navigator";
 import Home from "./Home";
 import Admission from "./wards/Admission";
 import Discharge from "./discharge/Discharge";
-
+import Prescription from "./prescription/prescription";
 
 
 export default class AppContainer extends Component {
@@ -36,6 +36,9 @@ export default class AppContainer extends Component {
         </Switch>
         <Switch>
             <Route path='/discharge' component={Discharge}/>
+        </Switch>
+        <Switch>
+            <Route path='/prescription' component={Prescription}/>
         </Switch>
     </div>
 </Router>
