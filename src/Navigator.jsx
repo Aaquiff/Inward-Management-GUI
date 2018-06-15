@@ -17,8 +17,7 @@ export default class Navigator extends Component {
         event.preventDefault();
         event.stopPropagation();
         cookies.set('token', '', {path: '/'});
-        alert('Logged Out');
-        this.props.history.push("/login");
+        window.location = '/';
     }
 
     renderLoggedIn() {
@@ -31,8 +30,10 @@ export default class Navigator extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
-                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Login">
-                        <NavLink className="nav-link" to={'/login'}>Login</NavLink>
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
+                        <a className="nav-link" onClick={(event) => {
+                            this.logout(event)
+                        }} to={'/login'}>Logout</a>
                     </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
                         <NavLink className="nav-link" to={'/home'}>Home</NavLink>

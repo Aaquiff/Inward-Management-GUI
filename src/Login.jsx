@@ -35,10 +35,8 @@ export default class Login extends Component {
             password:this.state.password
         }).then((data)=>{
             cookies.set('token',data.data.token,{ path: '/'});
-            alert(data.data.message)
             this.props.history.push("/");
         }).catch((data)=>{
-            alert(data.data.message)
         })
     }
 
