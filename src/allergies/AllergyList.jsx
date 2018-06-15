@@ -7,7 +7,7 @@ export default class AllergyList extends Component {
 
     static get propTypes() {
         return {
-            onView: PropTypes.func
+            onDelete: PropTypes.func
         }
     }
 
@@ -19,14 +19,9 @@ export default class AllergyList extends Component {
         
     }
 
-    deleteAllergy(name){
-        console.log('delete '+name);
-    }
-
-    onView(event, obj) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.onView(obj);
+    deleteAllergy(allergyId){
+        console.log('delete '+allergyId);
+        this.props.onDelete(allergyId);
     }
 
     render() {
@@ -34,12 +29,12 @@ export default class AllergyList extends Component {
         console.log(patientAllergies.data);
         return <div className="list-group">
             { patientAllergies.map(obj => {
-                    return <div className="list-group-item">
+                    return <div className="list-group-item" key={obj.allergyId}>
                     <h5 className="card-title">Alergy : {obj.allergyName}</h5>
-                    <h5 className="card-subtitle">Status : {obj.allergyStatus}</h5>
-                    <h5 className="card-subtitle">Remarks : {obj.allergyRemarks}</h5>
-                    <h5 className="card-subtitle">Category : {obj.allergyCategory}</h5>
-                    <h5 className="card-subtitle">Severity : {obj.allergySeverity}</h5>
+                    <label className="card-subtitle">Status : {obj.allergyStatus}</label><br/>
+                    <label className="card-subtitle">Remarks : {obj.allergyRemarks}</label><br/>
+                    <label className="card-subtitle">Category : {obj.allergyCategory}</label><br/>
+                    <label className="card-subtitle">Severity : {obj.allergySeverity}</label><br/>
                     <button type="button" onClick={this.deleteAllergy.bind(this, obj.allergyId)} >Delete</button>
                 </div>
                 })

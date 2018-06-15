@@ -57,7 +57,7 @@ export default class addAllergy extends Component {
                         <option>Past</option>
                 </select>
                 <label>Remarks</label>
-                <input className="form-control" type="text" placeholder="Enter Remarks" ref="aremarks" />
+                <textarea  className="form-control"  rows = "5" placeholder="Enter Remarks" ref="aremarks" />
                 <label>Category</label>
                 <select className="form-control" type="text" ref="acategory">
                         <option key="Amimal" value="Amimal">Amimal</option>

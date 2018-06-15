@@ -46,7 +46,7 @@ export default class Allergies extends Component {
         var config = {headers: {'x-access-token': cookies.get('token')}};
         axios.post(API_URL + `/allergies/` + this.state.patientId, allergy, config
         ).then((data) => {
-            alert(data.message);
+            alert("Successfully added!");
             axios.get(API_URL + `/allergies/` + this.state.patientId, config)
                 .then(res => {
                     this.loadAllergies();
@@ -54,26 +54,38 @@ export default class Allergies extends Component {
         })
     }
 
-    onView(obj) {
-        this.setState({
-            obj: obj
-        });
-        console.log('sadasdsad');
+    deleteAllergy(allergyId) {
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.delete(API_URL + `/allergies/` + this.state.patientId + '/' + allergyId, config
+        ).then((data) => {
+            alert("Successfully deleted!");
+            axios.get(API_URL + `/allergies/` + this.state.patientId, config)
+                .then(res => {
+                    this.loadAllergies();
+                });
+        })
     }
+
 
     render() {
         var algy = this.state.patientAllergies;
         console.log(this.state.patientAllergies);
 
-        return <div>
+        return <div class="container">
+            
             <h3>Allergies</h3>
             <div className="row">
                 <div className="col-4">
                 <AddAllergy patientId={this.state.patientId} addAllergy={allergy=> this.addAllergy(allergy)} />
                 </div>
-                <div>   </div>
-                <div className="row">
-                    <AllergyList onView={obj => this.onView(obj)}
+                <div className="col-8 rr">
+                <style>{"\
+                .rr{\
+                  height: 80vh;\
+                  overflow-y: scroll;\
+                            }\
+              "}</style>
+                    <AllergyList onDelete={allergyId => this.deleteAllergy(allergyId)}
                     patientAllergies={this.state.patientAllergies} />
                     
                 </div>
