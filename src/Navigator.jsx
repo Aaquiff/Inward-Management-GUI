@@ -21,6 +21,7 @@ export default class Navigator extends Component {
     }
 
     renderLoggedIn() {
+        var user = cookies.get('user');
         return <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <a className="navbar-brand" href="index.html">Inward Management System</a>
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -31,12 +32,14 @@ export default class Navigator extends Component {
             <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
-                        <NavLink className="nav-link" to={'/home'}>Home</NavLink>
+                        <NavLink className="nav-link" to={'/home'}>
+                            <i className="fa fa-fw fa-home"></i> Home
+                        </NavLink>
                     </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Ward">
                         <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse"
                             href="#collapseComponents" data-parent="#exampleAccordion">
-                            <span className="nav-link-text">Ward</span>
+                            <span className="nav-link-text"><i className="fa fa-fw fa-hospital-o"></i> Ward</span>
                         </a>
                         <ul className="sidenav-second-level collapse" id="collapseComponents">
                             <li>
@@ -61,6 +64,9 @@ export default class Navigator extends Component {
                     </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
+                        <a className="nav-link"><i className="fa fa-fw fa-user-circle"></i> {user.username}</a>
+                    </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Logout">
                         <a className="nav-link" onClick={(event) => {
                             this.logout(event)
@@ -96,5 +102,3 @@ export default class Navigator extends Component {
             return this.renderLoggedOut()
     }
 }
-
-//<NavLink className="nav-link" to={'/login'}>Login</NavLink>
