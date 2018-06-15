@@ -45,7 +45,8 @@ export default class addAllergy extends Component {
 
     render() {
         return <div>
-        Add Allergy <br/>
+        <br/>
+        <h5>Add Allergy</h5> 
         <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label>Allergy Name</label>
@@ -72,6 +73,7 @@ export default class addAllergy extends Component {
                         <option key="Unknown" value="Unknown">Unknown</option>
                 </select>
             </div>
+            <br/>
             <input type="submit" value="Add"/>
         </form>
     </div>
