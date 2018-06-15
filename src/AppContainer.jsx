@@ -39,7 +39,7 @@ export default class AppContainer extends Component {
             <Route path='/discharge' component={Discharge}/>
         </Switch>
         <Switch>
-            <Route path={"/prescription/:bht/:patientId"} component={Prescription}/>
+            <Route path={"/prescriptions/:bht/:patientId"} component={Prescription}/>
         </Switch>
         <Switch>
             <Route path='/allergies' component={Allergies}/>
