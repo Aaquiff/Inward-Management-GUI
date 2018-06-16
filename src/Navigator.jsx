@@ -48,6 +48,9 @@ export default class Navigator extends Component {
                             <li>
                                 <NavLink className="nav-link" to={'/admissions'}>Ward Admissions</NavLink>
                             </li>
+                            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Transfers">
+                                <NavLink className="nav-link" to={'/transfers'}>Transfers</NavLink>
+                            </li>
                         </ul>
                     </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Patient">
@@ -64,9 +67,6 @@ export default class Navigator extends Component {
                             </li>
                             <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Allergies">
                                 <NavLink className="nav-link" to={'/allergies'}>Allergies</NavLink>
-                            </li>
-                            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Transfers">
-                                <NavLink className="nav-link" to={'/transfers'}>Transfers</NavLink>
                             </li>
                         </ul>
                     </li>
