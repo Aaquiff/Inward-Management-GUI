@@ -2,7 +2,9 @@
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
 export default class AddPrescription extends Component {
     static get propTypes() {
         return {
@@ -26,7 +28,7 @@ export default class AddPrescription extends Component {
     }
 
     handleSubmit(e){
-        
+
             this.setState({newPrescription:{
                 patientId: this.props.patientId,
                 bhtNo: this.props.bhtNo,
@@ -64,9 +66,9 @@ export default class AddPrescription extends Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label>From</label>
-                <input type="date" ref="from" />
+                <input type="date" ref="from" min="2017-06-16"/>
                 <label>To</label>
-                <input type="date" ref="to" />
+                <input type="date" ref="to" min="2017-06-16"/>
                 <table className="table table-striped table-sm">
                     <thead>
                         <tr>
