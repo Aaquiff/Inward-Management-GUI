@@ -74,6 +74,7 @@ export default class Allergies extends Component {
         return <div class="container">
             
             <h3>Allergies</h3>
+            <h6>Patient ID - {this.state.patientId}</h6>
             <div className="row">
                 <div className="col-4">
                 <AddAllergy patientId={this.state.patientId} addAllergy={allergy=> this.addAllergy(allergy)} />
