@@ -12,7 +12,7 @@ import Admission from "./wards/Admission";
 import Discharge from "./discharge/Discharge";
 import Prescriptions from "./prescription/prescriptions";
 import Allergies from "./allergies/Allergies";
-import PatientAdmission from "./admissions/admission";
+import PatientAdmission from "./admissions/Admission";
 import Transfers from "./transfers/Transfer";
 import TransferDet from "./transfers/TransferHist";
 
