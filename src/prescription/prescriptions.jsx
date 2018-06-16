@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import PrescriptionList from './prescriptionList';
+import AddPrescription from './AddPrescription';
 
 const cookies = new Cookies();
 var API_URL = 'http://localhost:3000/api/';
@@ -44,6 +45,15 @@ export default class Prescriptions extends React.Component {
         });
     }
 
+    addPrescription(prescription) {
+        var config = {headers: {'x-access-token': cookies.get('token')}};
+        axios.post(API_URL + 'prescriptions', prescription, config
+        ).then((data) => {
+            alert("Successfully added!");
+            this.loadData();
+        })
+    }
+
     render() {
         let header;
         if (this.state.patient != null) {
@@ -60,13 +70,13 @@ export default class Prescriptions extends React.Component {
                 <div className="row">
                     <div className="col-md-7 col-lg-7">
                         {header}
-                    </div>
-                    <div className="col-md-2 col-lg-2">
-                        <button type="button" className="btn btn-dark">Prescribe Drugs</button>
-                    </div>
+                    </div>                    
                 </div>
                 <div className="table-responsive">
                     <PrescriptionList prescriptions={this.state.prescriptions}/>                
+                </div>
+                <div>
+                    <AddPrescription patientId={this.state.patientId} bhtNo={this.state.bht} AddPrescription={prescription=> this.addPrescription(prescription)} />
                 </div>
             </main>
         );
