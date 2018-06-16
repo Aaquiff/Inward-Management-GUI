@@ -59,6 +59,10 @@ export default class Transfer extends Component {
     }
 
     transferPatient(newAdmission) {
+        if(this.state.selected._id === undefined){
+            alert("Please select a record from the admited list to transfer.");
+            return;
+        }
         console.log('TRANSFERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR'+this.state.selected._id);
         var updatedObj = this.state.selected;
         updatedObj.wardNo = newAdmission.transferWard;
